@@ -1,14 +1,16 @@
-from  integrals import processIntegral, integral_description
+#import outside libraries
+
 import typer
-import re
+
+#imports from other files with relevant functions
+
+from  utils.integrals import processIntegral, integral_description
 
 
 
 def main(input: str, integral: str = typer.Option("", help=integral_description)):
-    if integral:
-        if " " in integral:
-            a, b = integral.split(",")
-        typer.echo(processIntegral(input,a,b))
+    if integral != "":
+        typer.echo(processIntegral(input,integral))
 
 
 if __name__ == '__main__':

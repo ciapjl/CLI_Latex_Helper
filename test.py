@@ -1,6 +1,6 @@
 import re
 
-txt = "x,y,    2,3;3"
-x = re.split("[, *;-]", txt)
-x = list(filter(lambda x: x !='', x))
+txt = "2axdf"
+x= re.findall('[a-z]', txt)
 print(x) 
+
