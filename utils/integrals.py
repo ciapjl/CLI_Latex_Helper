@@ -4,14 +4,6 @@ import re
 integral_description = 'add the lower and upper limits to your integral by using the one of the following characters: ;,:- '
 
 
-def processIntegral(input, integral_bounds):
-    """This function servers to process integrals """
-    boundsProcessed = processIntegralBounds(integral_bounds)
-    integrandProcess = processIntegrand(input)
-    return f"\[\int{boundsProcessed}{processIntegrand}\]"
-
-
-
 def processIntegralBounds(bounds):
     limits = ""
     if bounds != "":
@@ -42,6 +34,17 @@ def processIntegrand(integrand):
             finalIntegrand = integrand 
 
     return finalIntegrand
+
+
+
+
+def processIntegral(input, integral_bounds):
+    """This function servers to process integrals """
+    boundsProcessed = processIntegralBounds(integral_bounds)
+    integrandProcess = processIntegrand(input)
+    return f"\[\int{boundsProcessed}{processIntegrand}\]"
+
+
 
 
 
