@@ -5,6 +5,9 @@ This CLI tool currently provides several options to tranform basic/quick "normal
 
 This is achieved is by separating the use cases into several options available at the CLI(which turn out to be the tool's features):
 
--equations
--integrals
--matrices
+- equations
+- integrals
+- matrices
+
+The CLI always takes _(1)_ - a principal argument  when the tool is called. As default
+
