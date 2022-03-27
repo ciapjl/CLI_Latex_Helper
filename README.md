@@ -9,5 +9,11 @@ This is achieved is by separating the use cases into several options available a
 - integrals
 - matrices
 
-The CLI always takes _(1)_ - a principal argument  when the tool is called. As default
+The CLI always takes _(1)_ - a principal argument  when the tool is called. As default, the
+
+
+
+## Possible extensions/features/improvememts to be made
+
+- More complex equation handling.
 

@@ -8,7 +8,10 @@ from  utils.integrals import processIntegral, integral_description
 from utils.equations import processEquation, equations_description
 
 
-def main(input: str, integral: str = typer.Option("", help=integral_description), equation: str = typer.Option("", help=equation_description)):
+integralTyperOption = typer.Option("", help=integral_description)
+equationTyperOption = typer.Option("", help=equations_description)
+
+def main(input: str, integral: str = integralTyperOption, equation: str = equationTyperOption):
     if integral != "":
         typer.echo(processIntegral(input,integral))
 
@@ -16,7 +19,7 @@ def main(input: str, integral: str = typer.Option("", help=integral_description)
         typer.echo(processEquation(input,equation) )
     
     else:
-        typer.echo(f"\[{input}\]")
+        typer.echo(f"")
 
     
 
