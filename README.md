@@ -16,4 +16,5 @@ The CLI always takes _(1)_ - a principal argument  when the tool is called. As d
 ## Possible extensions/features/improvememts to be made
 
 - More complex equation handling.
+- Automatic copying to clipboard. NOTE a workaround:  it seems(without verifying closely) that this can already by piping the output to xclip on linux.
 
