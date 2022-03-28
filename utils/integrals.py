@@ -7,34 +7,32 @@ integral_description = 'indicate that your wish for a integral to be process. Th
 def processIntegralBounds(bounds):
     limits = ""
     if bounds != "":
-        if '-' in bounds:
-            bounds_array = bounds.split('-')
-        else: 
-            bounds_array = re.split("[,;*| ]", bounds)
+        bounds_array = re.split("[,;*| ]", bounds)
         bounds_array = list(filter(lambda x: x !='', bounds_array))
         if len(bounds_array)<1:
             limits=f"_{{{bounds_array[0]}}}"
         else:
             limits = f"_{{{bounds_array[0]}}}^{{{bounds_array[1]}}}"   
-    return limits
-    
-    
-
-    
+    return limits    
 
 
 def processIntegrand(integrand):
     finalIntegrand = ""
     if integrand != "":
-        if re.search("d*$", integrand) != None and re.search('[a-zA-Z]', integrand) != None:
-            ##add relevant dx if missing when
+        containsDifferential = re.search("d.*$", integrand) != None
+        containsVariableofIntegral =  re.search('[a-zA-Z]', integrand) != None
+        
+        if containsVariableofIntegral and not containsDifferential :
+            ##add relevant d{variableofIntegration} if missing and it exists
             variableWRT = re.findall('[a-zA-Z]', integrand)[0]
             finalIntegrand = f"{integrand} \ d{variableWRT}"
-        elif re.search("d*$", integrand) != None:
-            #use t as the variable of integration if integrand comprises of constants
+        elif not (containsDifferential or containsVariableofIntegral):
+            #use t as the variable of integration if integrand comprises of constants and no differential is present
             finalIntegrand = f"{integrand} \ dt"
-        else:
-            finalIntegrand = integrand 
+        elif containsDifferential and containsVariableofIntegral:
+            differential = re.search("d.*$", integrand)[0]
+            integrandWithoutDifferential  = integrand[:integrand.index(differential[0])].strip()
+            finalIntegrand = f"{integrandWithoutDifferential} \ {differential}"
 
     return finalIntegrand
 
