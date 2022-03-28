@@ -1,20 +1,23 @@
 import re
 
 
-integral_description = 'add the lower and upper limits to your integral by using the one of the following characters: ;,:- '
+integral_description = 'indicate that your wish for a integral to be process. The option is to add the lower and upper limits to your integral by using the one of the following characters: ;,:- to delineate the lower and upper bounds'
 
 
 def processIntegralBounds(bounds):
     limits = ""
     if bounds != "":
-        bounds_array = re.split("[, *;-:|]", bounds)
+        if '-' in bounds:
+            bounds_array = bounds.split('-')
+        else: 
+            bounds_array = re.split("[,;*| ]", bounds)
         bounds_array = list(filter(lambda x: x !='', bounds_array))
         if len(bounds_array)<1:
             limits=f"_{{{bounds_array[0]}}}"
         else:
             limits = f"_{{{bounds_array[0]}}}^{{{bounds_array[1]}}}"   
     return limits
-
+    
     
 
     
@@ -23,13 +26,13 @@ def processIntegralBounds(bounds):
 def processIntegrand(integrand):
     finalIntegrand = ""
     if integrand != "":
-        if not re.search("d*$", integrand) and re.search('[a-zA-Z]', integrand):
+        if re.search("d*$", integrand) != None and re.search('[a-zA-Z]', integrand) != None:
             ##add relevant dx if missing when
-            varaibleWRT = re.findall('[a-zA-Z]', integrand)[0]
-            finalIntegrand = f"{integrand}dx"
-        elif not re.search("d*$", integrand):
+            variableWRT = re.findall('[a-zA-Z]', integrand)[0]
+            finalIntegrand = f"{integrand} \ d{variableWRT}"
+        elif re.search("d*$", integrand) != None:
             #use t as the variable of integration if integrand comprises of constants
-            finalIntegrand = f"{integrand}dt"
+            finalIntegrand = f"{integrand} \ dt"
         else:
             finalIntegrand = integrand 
 
@@ -42,7 +45,7 @@ def processIntegral(input, integral_bounds):
     """This function servers to process integrals """
     boundsProcessed = processIntegralBounds(integral_bounds)
     integrandProcess = processIntegrand(input)
-    return f"\[\int{boundsProcessed}{processIntegrand}\]"
+    return f"\[\int{{{boundsProcessed}}}{{{integrandProcess}}}\]"
 
 
 
