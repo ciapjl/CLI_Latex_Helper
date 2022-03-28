@@ -6,24 +6,24 @@ import typer
 
 from utils.integrals import processIntegral, integral_description
 from utils.equations import processEquation, equations_description
-
+from utils.matrices import processMatrix, matrix_description
 
 integralTyperOption = typer.Option("", help=integral_description)
 equationTyperOption = typer.Option("", help=equations_description)
-inLineOption = typer.Option(
-    False, help='Add this option to generate an inline tex form')
+matrixTyperOption = typer.Option("", help=matrix_description)
 
 
 def main(
 input: str,
 integral: str = integralTyperOption,
-equation: str = equationTyperOption, 
-inline=inLineOption):
+equation: str = equationTyperOption,
+):
     if integral != "":
         typer.echo(processIntegral(input, integral))
 
     elif equation != "":
         typer.echo(processEquation(input, equation))
+
 
     else:
         typer.echo(f"")

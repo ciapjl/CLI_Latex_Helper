@@ -1,8 +1,9 @@
 import unittest
-
 import sys
 
 sys.path.append('/home/jean-luc/Documents/OdinProject/Python_CLI/CLI_Latex_Helper/')
+
+
 from utils.integrals import processIntegral
 
 
