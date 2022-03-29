@@ -10,7 +10,7 @@ def processAlignedEquations(input):
     alignEnviron = ""
     equations_array = re.split("[,;|.]", input)
     equations_array = list(filter(lambda x: x !='', equations_array))
-    insideAlignEnv =  '\n'.join([x.replace(" ", "").replace('=', " &= ").strip() for x in equations_array])
+    insideAlignEnv =  f' {BACKSLASH}{BACKSLASH}\n'.join([x.replace(" ", "").replace('=', " &= ").strip() for x in equations_array])
     return f"{BACKSLASH}begin{{align*}}\n {insideAlignEnv}\n {BACKSLASH}end{{align*}}"
 
 
