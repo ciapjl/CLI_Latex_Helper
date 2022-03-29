@@ -9,7 +9,7 @@ def processIntegralBounds(bounds):
     if bounds != "":
         bounds_array = re.split("[,;*| ]", bounds)
         bounds_array = list(filter(lambda x: x !='', bounds_array))
-        if len(bounds_array)<1:
+        if len(bounds_array)>1:
             limits = f"_{{{bounds_array[0]}}}^{{{bounds_array[1]}}}"   
     return limits    
 

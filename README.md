@@ -52,14 +52,49 @@ For example, the command
 
 `python main.py "7dx" --integral "2,4"`
 
+gives us
+
+`\[\int{_{2}^{4}}{7 \ dx}\]`
+
+The integral tool also has basic formatting and regex features where the relevant differential is added if omitted or implied, e.g. 
+
+- `python main.py "2" --integral "a,b"` gives `[\int{_{a}^{b}}{2 \ dt}\]`
+- `python main.py "4x^2+8x+2" --integral "-4,4"` gives `\[\int{_{-4}^{4}}{4x^2+8x+2 \ dx}\]`
 
 
 
 ### Matrices
 
+Similar to the integral flag, the `--matrix` flag also takes an argument in addition to the main `input` argument supplied at the beginning. Indeed, the main `input` parameter will take a comma or space delimited list of the elements of the matrix/array. The argument supplied to the `--matrix` flag will specify the dimension of the matrix desired. 
+
+For example, the command
+
+`python main.py "a,b,c,d" --matrix "2*2"`
+
+gives us 
+
+```
+\{pmatrix}
+a & b\\
+c & d\\
+\{pmatrix}
+```
 
 
+and similarly 
 
+`python main.py "a,b,c,d,e,f" --matrix "3*2"`
+
+gives us 
+```
+\{pmatrix}
+a & b\\
+c & d\\
+e & f\\
+\{pmatrix}
+```
+
+Note that the tool does some basis checking for logical consistency between the dimensions requested and the number of elements supplied. If ever the `None` keyword appears in the output of a function, assume that something is wrong with the input and that the user should revisit these paragraphs to check on the way to input data here. They can also check the test folder provided to see further examples of use cases.
 
 
 
@@ -67,7 +102,8 @@ For example, the command
 
 - Could be made more user friendly, arguably complex enough to just learn latex format instead, which kind of defeats the purpose of the project.
 - More complex equation handling.
-- Automatic copying to clipboard. NOTE a workaround:  it seems(without verifying closely) that this can already by piping the output to xclip on linux.
+- Automatic copying to clipboard of the output to use in another program to avoid awkward terminal highlighting and shift-control-c. *NOTE* a possible workaround:  it seems(without verifying closely) that this can already by piping the output to xclip on linux.
 - Testing: 
     - Make testing actually compare latex output using some kind of OCR, instead of verifying strings output(which isn't actually what is needed since multiple differnt strings can be compiled to produce the same latex output)
     - Test directly at the CLI level, not just the functions underlying the CLI
+- Other possible features involving tikz and predictable, simple diagrams like exat sequences in homological algebra.
