@@ -10,8 +10,6 @@ def processIntegralBounds(bounds):
         bounds_array = re.split("[,;*| ]", bounds)
         bounds_array = list(filter(lambda x: x !='', bounds_array))
         if len(bounds_array)<1:
-            limits=f"_{{{bounds_array[0]}}}"
-        else:
             limits = f"_{{{bounds_array[0]}}}^{{{bounds_array[1]}}}"   
     return limits    
 
@@ -30,6 +28,7 @@ def processIntegrand(integrand):
             #use t as the variable of integration if integrand comprises of constants and no differential is present
             finalIntegrand = f"{integrand} \ dt"
         elif containsDifferential and containsVariableofIntegral:
+            #format correct with space betweeninner integrand and differential if both are present/provided by user
             differential = re.search("d.*$", integrand)[0]
             integrandWithoutDifferential  = integrand[:integrand.index(differential[0])].strip()
             finalIntegrand = f"{integrandWithoutDifferential} \ {differential}"
