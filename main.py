@@ -16,17 +16,19 @@ matrixTyperOption = typer.Option("", help=matrix_description)
 def main(
 input: str,
 integral: str = integralTyperOption,
-equation: str = equationTyperOption,
+equation: bool = False,
+matrix: str = matrixTyperOption,
 ):
     if integral != "":
         typer.echo(processIntegral(input, integral))
 
-    elif equation != "":
-        typer.echo(processEquation(input, equation))
+    elif equation:
+        typer.echo(processEquation(input))
 
-
+    elif matrix != "":
+        typer.echo(processMatrix(input, matrix))
     else:
-        typer.echo(f"")
+        typer.echo(f"\[{input}\]")
 
 
 

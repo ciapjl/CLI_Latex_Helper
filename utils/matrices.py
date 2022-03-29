@@ -21,7 +21,6 @@ def processMatrixDimensions(dimensions):
         return (dimension_array[0], dimension_array[1])
         
     
-print(processMatrixDimensions("2,2"))
 
     
 def processMatrixEntries(input, dimensions):
