@@ -31,7 +31,6 @@ def processMatrixEntries(input, dimensions):
     processDimensions = processMatrixDimensions(dimensions)
     if processDimensions == None:
         return None
-    print(processDimensions)
     nRows, nCols = tuple(processMatrixDimensions(dimensions))
     if nRows*nCols != len(entries_array):
         return None
